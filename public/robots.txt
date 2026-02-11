@@ -1,6 +1,5 @@
-# Photomate.id - Sewa Photobooth Malang
+# Photomate.id - Sewa Photobooth Malang (production: photomate.my.id)
 User-agent: *
 Allow: /
 
-# Sitemap (ganti https://photomate.id dengan domain Anda jika berbeda)
-Sitemap: https://photomate.id/sitemap.xml
+Sitemap: https://photomate.my.id/sitemap.xml
