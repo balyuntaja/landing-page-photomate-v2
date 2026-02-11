@@ -2,7 +2,6 @@ import { Routes, Route } from "react-router-dom";
 import {
   Navbar,
   Hero,
-  // About,
   CallToAction,
   Services,
   Pricing,
@@ -31,7 +30,6 @@ function HomePage() {
     <>
       <Navbar />
       <Hero />
-      {/* <About /> */}
       <FindUsSection />
       <Client />
       <Pricing />

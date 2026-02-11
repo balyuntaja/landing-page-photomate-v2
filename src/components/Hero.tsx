@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import heroCollage from "../assets/img/hero_photomate.png";
+import heroCollage from "../assets/img/hero_photomate.webp";
 
 const DURATION_MS = 1800;
 const EVENT_TARGET = 70;
@@ -68,7 +68,7 @@ const Hero: React.FC = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
-                  href="#contact"
+                  href="#pricing"
                   className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full bg-primary text-white font-semibold hover:bg-primary-light transition"
                 >
                   Lihat Produk

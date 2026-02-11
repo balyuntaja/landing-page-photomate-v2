@@ -1,35 +1,37 @@
 import { useRef, useState } from 'react';
 
-type Category = 'All' | 'Wedding' | 'Event' | 'Corporate' | 'Birthday';
+type Category = 'All' | 'Wedding' | 'Event';
+type ItemCategory = 'Wedding' | 'Event';
 
 interface GalleryItem {
   id: number;
-  category: Category;
+  category: ItemCategory;
   image: string;
+  alt: string;
 }
 
-const categories: Category[] = [
-  'All',
-  'Wedding',
-  'Event',
-  'Corporate',
-  'Birthday',
-];
+const categories: Category[] = ['All', 'Wedding', 'Event'];
 
-const galleryItems: GalleryItem[] = [
-  { id: 1, category: 'Wedding', image: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image.jpg' },
-  { id: 2, category: 'Event', image: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg' },
-  { id: 3, category: 'Corporate', image: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg' },
-  { id: 4, category: 'Birthday', image: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg' },
-  { id: 5, category: 'Wedding', image: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg' },
-  { id: 6, category: 'Event', image: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg' },
-  { id: 7, category: 'Corporate', image: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-6.jpg' },
-  { id: 8, category: 'Birthday', image: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-7.jpg' },
-  { id: 9, category: 'Wedding', image: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-8.jpg' },
-  { id: 10, category: 'Event', image: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-9.jpg' },
-  { id: 11, category: 'Corporate', image: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-10.jpg' },
-  { id: 12, category: 'Birthday', image: 'https://flowbite.s3.amazonaws.com/docs/gallery/square/image-11.jpg' },
-];
+// Muat semua gambar dari src/assets/img/event (jpg, jpeg, JPG, png)
+const imageModules = import.meta.glob<{ default: string }>(
+  '../assets/img/event/*.{jpg,jpeg,JPG,png}',
+  { eager: true }
+);
+
+const galleryItems: GalleryItem[] = Object.entries(imageModules).map(
+  ([path, mod], index) => {
+    const url = mod.default;
+    const filename = path.split('/').pop()?.toLowerCase() ?? '';
+    const category: ItemCategory = filename.includes('wedding')
+      ? 'Wedding'
+      : 'Event';
+    const alt =
+      category === 'Wedding'
+        ? `Gallery wedding Photomate ${index + 1}`
+        : `Gallery event Photomate ${index + 1}`;
+    return { id: index + 1, category, image: url, alt };
+  }
+);
 
 const Gallery: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<Category>('All');
@@ -40,8 +42,7 @@ const Gallery: React.FC = () => {
       ? galleryItems
       : galleryItems.filter((item) => item.category === activeCategory);
 
-  // Ambil hanya 8 foto
-  const visibleItems = filteredItems.slice(0, 8);
+  const visibleItems = filteredItems;
 
   const scroll = (direction: 'left' | 'right') => {
     if (!sliderRef.current) return;
@@ -57,12 +58,12 @@ const Gallery: React.FC = () => {
     <section id="gallery" className="py-20 bg-white scroll-mt-24">
       <div className="container mx-auto px-4">
         {/* Title */}
-        <h2 className="text-3xl md:text-4xl font-bold text-[#364e71] text-center mb-10">
+        <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-10">
           Gallery Photomate
-          <span className="block w-20 h-1 bg-[#364e71] mx-auto mt-4 rounded-full" />
+          <span className="block w-20 h-1 bg-primary mx-auto mt-4 rounded-full" />
         </h2>
 
-        {/* Filter */}
+        {/* Filter: All, Wedding, Event */}
         <div className="flex justify-center flex-wrap gap-3 mb-10">
           {categories.map((category) => (
             <button
@@ -71,8 +72,8 @@ const Gallery: React.FC = () => {
               className={`px-5 py-2.5 rounded-full text-sm md:text-base font-medium border transition
                 ${
                   activeCategory === category
-                    ? 'bg-[#364e71] text-white border-[#364e71]'
-                    : 'bg-white text-gray-700 border-gray-300 hover:border-[#364e71] hover:text-[#364e71]'
+                    ? 'bg-primary text-white border-primary'
+                    : 'bg-white text-gray-700 border-gray-300 hover:border-primary hover:text-primary'
                 }`}
             >
               {category}
@@ -82,7 +83,6 @@ const Gallery: React.FC = () => {
 
         {/* Carousel */}
         <div className="relative">
-          {/* Prev */}
           <button
             onClick={() => scroll('left')}
             className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/50 shadow-lg rounded-full py-5 px-2 mx-2 hover:bg-gray-100"
@@ -90,7 +90,6 @@ const Gallery: React.FC = () => {
             ‹
           </button>
 
-          {/* Slider */}
           <div
             ref={sliderRef}
             className="
@@ -102,18 +101,17 @@ const Gallery: React.FC = () => {
             {visibleItems.map((item) => (
               <div
                 key={item.id}
-                className="min-w-[75%] sm:min-w-[45%] md:min-w-[30%] snap-center"
+                className="min-w-[180px] w-[280px] sm:min-w-[300px] sm:w-[300px] shrink-0 snap-center"
               >
                 <img
                   src={item.image}
-                  alt={item.category}
-                  className="w-full h-full object-cover rounded-xl transition-transform duration-300 hover:scale-105"
+                  alt={item.alt}
+                  className="w-full h-auto object-contain rounded-xl transition-transform duration-300 hover:scale-105 aspect-2/3 bg-gray-100"
                 />
               </div>
             ))}
           </div>
 
-          {/* Next */}
           <button
             onClick={() => scroll('right')}
             className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/50 shadow-lg rounded-full py-5 px-2 mx-2 hover:bg-gray-100"

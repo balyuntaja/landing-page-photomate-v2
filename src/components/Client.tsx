@@ -1,6 +1,5 @@
 import Dirganala from "../assets/img/client/Dirganala.jpg";
 import FH from "../assets/img/client/FH.png";
-import GatheringKantor from "../assets/img/client/Gathering Kantor.png";
 import GolioHub from "../assets/img/client/Golio Hub.jpg";
 import LogoBEMFisip from "../assets/img/client/Logo BEM Fisip.png";
 import LogoCheckinFest from "../assets/img/client/logo Checkin Fest.png";
@@ -28,7 +27,6 @@ import TeenRocket from "../assets/img/client/Teen Rocket.png";
 const logos = [
   { src: Dirganala, alt: "Dirganala" },
   { src: FH, alt: "FH" },
-  { src: GatheringKantor, alt: "Gathering Kantor" },
   { src: GolioHub, alt: "Golio Hub" },
   { src: LogoBEMFisip, alt: "BEM Fisip" },
   { src: LogoCheckinFest, alt: "Checkin Fest" },
