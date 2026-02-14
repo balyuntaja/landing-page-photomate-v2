@@ -12,6 +12,7 @@ const MENU_ITEMS = [
   { label: "Home", to: "/", hash: "home" },
   { label: "Clients", to: "/", hash: "clients" },
   { label: "Gallery", to: "/", hash: "gallery" },
+  { label: "Cek Jadwal", to: "/availability", hash: null },
   { label: "Blog", to: "/blog", hash: null },
 ];
 

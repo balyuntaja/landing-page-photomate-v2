@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
-import { Footer } from "../components";
+import { Footer, Navbar } from "../components";
 import { blogArticles } from "../data/blogArticles";
 
 const BlogPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-50">
-      <main className="container mx-auto px-4 pt-12 pb-20 max-w-6xl">
+      <Navbar />
+      <main className="container mx-auto px-4 pt-24 pb-20 max-w-6xl">
         {/* Breadcrumb / Back */}
         <nav className="mb-8" aria-label="Breadcrumb">
           <Link

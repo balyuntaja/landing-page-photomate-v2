@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "tailwind-scrollbar-hide/v4";
 
 /* =========================
    THEME VARIABLES (Tailwind v4 @theme)
@@ -49,15 +50,6 @@ body {
   background: #2a3d58;
 }
 
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
-}
-
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
 /* Hero marquee: scroll dari bawah ke atas */
 @keyframes hero-marquee-up {
   0% {
@@ -91,4 +83,42 @@ body {
 }
 .hide-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari */
+}
+
+/* Event Availability calendar – full width (override library max-width: fit-content) */
+.event-availability-calendar .rdp-root,
+.event-availability-calendar .rdp-months {
+  width: 100%;
+  max-width: 100%;
+}
+.event-availability-calendar .rdp-month,
+.event-availability-calendar .rdp-month_grid {
+  width: 100%;
+}
+.event-availability-calendar .rdp-month_grid {
+  table-layout: fixed;
+}
+
+/* Event Availability calendar – modifier colors (purple = penuh, sky = terbatas) */
+.rdp-availability .rdp-day.rdp-fully-booked .rdp-day_button,
+.event-availability-calendar .rdp-day.rdp-fully-booked .rdp-day_button {
+  background-color: #9333ea;
+  color: white;
+  border-color: #7e22ce;
+}
+.rdp-availability .rdp-day.rdp-fully-booked .rdp-day_button:hover,
+.event-availability-calendar .rdp-day.rdp-fully-booked .rdp-day_button:hover {
+  background-color: #7e22ce;
+  color: white;
+}
+.rdp-availability .rdp-day.rdp-limited .rdp-day_button,
+.event-availability-calendar .rdp-day.rdp-limited .rdp-day_button {
+  background-color: #38bdf8;
+  color: #0c4a6e;
+  border-color: #0ea5e9;
+}
+.rdp-availability .rdp-day.rdp-limited .rdp-day_button:hover,
+.event-availability-calendar .rdp-day.rdp-limited .rdp-day_button:hover {
+  background-color: #0ea5e9;
+  color: white;
 }

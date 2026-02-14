@@ -7,21 +7,38 @@ interface Testimonial {
 
 const testimonials: Testimonial[] = [
   {
-    quote: "Pelayanan photobooth untuk wedding kami sangat memuaskan. Hasil foto tajam dan cetakan berkualitas. Tim responsif dan profesional. Highly recommended!",
-    name: "Budi & Siti",
-    roleOrEvent: "Wedding, Malang",
+    quote:
+      "Kita berdua happy banget, photobooth-nya high demand. Hasilnya super HD, crew-nya helpful juga. Semoga selalu berkah usahanya ya kak!",
+    name: "Rania & Cahya",
+    roleOrEvent: "Wedding Client",
     rating: 5,
   },
   {
-    quote: "Photomate dipakai di acara corporate kami. Tamu antusias, hasil cetak rapi, dan ada online album yang memudahkan semua. Terima kasih Photomate!",
-    name: "Andi Wijaya",
-    roleOrEvent: "Corporate Event, Surabaya",
+    quote:
+      "Makasih banyak sudah memeriahkan nikahan kami. Teman-teman photomate sangat helpful dan santun. Tamu juga pada senang fotonya. Sukses selalu ya kak!",
+    name: "Yasmin & Chicco",
+    roleOrEvent: "Wedding Client",
     rating: 5,
   },
   {
-    quote: "Booking mudah, harga transparan, dan hasilnya sesuai ekspektasi. Untuk birthday party anak saya, semua tamu senang bisa bawa pulang foto langsung.",
-    name: "Dewi Kusuma",
-    roleOrEvent: "Birthday Party, Jakarta",
+    quote:
+      "Terima kasih atas kerja sama yang sangat keren dari Kakak dan tim. Wedding dream mempelai terwujud. Sampai bertemu di next event ya!",
+    name: "Saraya Organizer",
+    roleOrEvent: "Wedding Organizer",
+    rating: 5,
+  },
+  {
+    quote:
+      "Team Photomate super helpful, agile, dan tidak ribet. Bisa eksekusi brief dengan sangat rapi. Komunikatif dan selalu on time. Recommended!",
+    name: "Kak Rizka",
+    roleOrEvent: "Lokanesia",
+    rating: 5,
+  },
+  {
+    quote:
+      "Kerja sama bareng Photomate benar-benar seru. Timnya fast response dan profesional. Banyak peserta puas dengan hasil fotonya. Semoga bisa kolaborasi lagi!",
+    name: "Sofi",
+    roleOrEvent: "Panitia PKKMB FISIP UB 2025",
     rating: 5,
   },
 ];
@@ -39,21 +56,22 @@ const ClientFeedback: React.FC = () => {
         </p>
         <span className="block w-20 h-1 bg-primary mx-auto mb-12 rounded-full" />
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Testimonials Row */}
+        <div className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide">
           {testimonials.map((item, index) => (
-            <div
+            <article
               key={index}
-              className="bg-gray-50 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+              className="flex flex-col min-w-[300px] md:min-w-[320px] lg:min-w-[340px] w-[300px] md:w-[320px] lg:w-[340px] bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100 snap-start shrink-0"
             >
               {/* Rating */}
-              <div className="flex gap-1 mb-4">
+              <div className="flex gap-0.5 mb-4" aria-label={`${item.rating} bintang`}>
                 {Array.from({ length: item.rating }).map((_, i) => (
                   <svg
                     key={i}
-                    className="w-5 h-5 text-amber-400"
+                    className="w-5 h-5 text-amber-400 shrink-0"
                     fill="currentColor"
                     viewBox="0 0 20 20"
+                    aria-hidden
                   >
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                   </svg>
@@ -61,14 +79,16 @@ const ClientFeedback: React.FC = () => {
               </div>
 
               {/* Quote */}
-              <p className="text-gray-600 leading-relaxed mb-6 italic">"{item.quote}"</p>
+              <p className="text-gray-600 text-sm md:text-base leading-relaxed mb-5 min-h-30 line-clamp-5">
+                &ldquo;{item.quote}&rdquo;
+              </p>
 
               {/* Author */}
-              <div className="pt-4 border-t border-gray-200">
-                <p className="font-semibold text-gray-800">{item.name}</p>
-                <p className="text-sm text-primary">{item.roleOrEvent}</p>
+              <div className="pt-4 border-t border-gray-100">
+                <p className="font-semibold text-gray-800 text-sm">{item.name}</p>
+                <p className="text-xs text-primary mt-0.5">{item.roleOrEvent}</p>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

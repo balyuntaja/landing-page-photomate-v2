@@ -21,6 +21,7 @@ import {
 } from "./components";
 import BlogPage from "./pages/BlogPage";
 import BlogDetailPage from "./pages/BlogDetailPage";
+import EventAvailability from "./pages/EventAvailability";
 import PricingSewaPage from "./pages/PricingSewaPage";
 import PricingSelfRunPage from "./pages/PricingSelfRunPage";
 import PricingSharingProfitPage from "./pages/PricingSharingProfitPage";
@@ -61,6 +62,7 @@ function App() {
           path="/pricing/sharing-profit"
           element={<PricingSharingProfitPage />}
         />
+        <Route path="/availability" element={<EventAvailability />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogDetailPage />} />
       </Routes>

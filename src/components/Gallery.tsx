@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 
-type Category = 'All' | 'Wedding' | 'Event';
-type ItemCategory = 'Wedding' | 'Event';
+type Category = 'All' | 'Wedding' | 'Event' | 'Brand';
+type ItemCategory = 'Wedding' | 'Event' | 'Brand';
 
 interface GalleryItem {
   id: number;
@@ -10,27 +10,36 @@ interface GalleryItem {
   alt: string;
 }
 
-const categories: Category[] = ['All', 'Wedding', 'Event'];
+const categories: Category[] = ['All', 'Wedding', 'Event', 'Brand'];
 
-// Muat semua gambar dari src/assets/img/event (jpg, jpeg, JPG, png)
-const imageModules = import.meta.glob<{ default: string }>(
+// Muat gambar dari src/assets/img/event (termasuk wedding*, event*, brand1, brand2, dll)
+const eventModules = import.meta.glob<{ default: string }>(
   '../assets/img/event/*.{jpg,jpeg,JPG,png}',
   { eager: true }
 );
 
-const galleryItems: GalleryItem[] = Object.entries(imageModules).map(
-  ([path, mod], index) => {
+const mapModulesToItems = (
+  modules: Record<string, { default: string }>
+): GalleryItem[] =>
+  Object.entries(modules).map(([path, mod], index) => {
     const url = mod.default;
     const filename = path.split('/').pop()?.toLowerCase() ?? '';
-    const category: ItemCategory = filename.includes('wedding')
-      ? 'Wedding'
-      : 'Event';
+    const category: ItemCategory = filename.includes('brand')
+      ? 'Brand'
+      : filename.includes('wedding')
+        ? 'Wedding'
+        : 'Event';
     const alt =
-      category === 'Wedding'
-        ? `Gallery wedding Photomate ${index + 1}`
-        : `Gallery event Photomate ${index + 1}`;
-    return { id: index + 1, category, image: url, alt };
-  }
+      category === 'Brand'
+        ? `Gallery brand Photomate ${index + 1}`
+        : category === 'Wedding'
+          ? `Gallery wedding Photomate ${index + 1}`
+          : `Gallery event Photomate ${index + 1}`;
+    return { id: 0, category, image: url, alt };
+  });
+
+const galleryItems: GalleryItem[] = mapModulesToItems(eventModules).map(
+  (item, index) => ({ ...item, id: index + 1 })
 );
 
 const Gallery: React.FC = () => {
@@ -63,7 +72,7 @@ const Gallery: React.FC = () => {
           <span className="block w-20 h-1 bg-primary mx-auto mt-4 rounded-full" />
         </h2>
 
-        {/* Filter: All, Wedding, Event */}
+        {/* Filter: All, Wedding, Event, Brand */}
         <div className="flex justify-center flex-wrap gap-3 mb-10">
           {categories.map((category) => (
             <button

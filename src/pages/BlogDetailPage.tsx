@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { Footer } from "../components";
+import { Footer, Navbar } from "../components";
 import { getArticleById, blogArticles } from "../data/blogArticles";
 
 function getReadingTime(body: string): number {
@@ -18,7 +18,8 @@ const BlogDetailPage: React.FC = () => {
   if (!article) {
     return (
       <div className="min-h-screen bg-gray-50">
-        <main className="container mx-auto px-4 pt-12 pb-20 max-w-2xl text-center">
+        <Navbar />
+        <main className="container mx-auto px-4 pt-24 pb-20 max-w-2xl text-center">
           <h1 className="text-2xl font-bold text-gray-800 mb-2">Artikel tidak ditemukan</h1>
           <p className="text-gray-600 mb-8">URL mungkin salah atau artikel telah dipindahkan.</p>
           <Link
@@ -40,8 +41,8 @@ const BlogDetailPage: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
-    
-      <main className="container mx-auto px-4 pt-12 pb-20 max-w-3xl">
+      <Navbar />
+      <main className="container mx-auto px-4 pt-24 pb-20 max-w-3xl">
         {/* Back */}
         <nav className="mb-8" aria-label="Navigasi">
           <Link

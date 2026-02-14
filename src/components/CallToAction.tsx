@@ -1,7 +1,7 @@
 const WA_NUMBER = "6287787405280";
 
 const WA_MESSAGE = encodeURIComponent(
-  "Hai Photomate 👋 saya ingin melakukan booking photobooth untuk durasi lebih dari 2 hari. Mohon info paket dan penawaran terbaiknya. Terima kasih 🙏",
+  "Hai Photomate 👋 saya ingin melakukan booking photobooth untuk kebutuhan lebih dari 2 hari atau 2 device. Mohon info paket dan penawaran terbaiknya. Terima kasih 🙏",
 );
 
 const WA_URL = `https://wa.me/${WA_NUMBER}?text=${WA_MESSAGE}`;
@@ -16,7 +16,7 @@ const CallToAction: React.FC = () => {
       <div className="relative container mx-auto px-4">
         <div
           className="
-            max-w-3xl mx-auto text-center
+            max-w-4xl mx-auto text-center
             rounded-3xl
             bg-white/15 backdrop-blur-2xl
             border border-white/20
@@ -25,11 +25,11 @@ const CallToAction: React.FC = () => {
           "
         >
           <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 leading-snug">
-            Booking Lebih dari 2 Hari?
+            Butuh sewa 2 Device atau Lebih dari 2 Hari?
           </h3>
 
           <p className="text-white/90 text-lg mb-10">
-            Dapatkan penawaran harga khusus untuk pemesanan photobooth dengan
+            Dapatkan penawaran harga khusus untuk kebutuhan multi device atau
             durasi lebih dari 2 hari. Hubungi admin Photomate untuk detail paket
             dan ketersediaan jadwal.
           </p>
