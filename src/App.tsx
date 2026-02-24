@@ -25,6 +25,7 @@ import EventAvailability from "./pages/EventAvailability";
 import PricingSewaPage from "./pages/PricingSewaPage";
 import PricingSelfRunPage from "./pages/PricingSelfRunPage";
 import PricingSharingProfitPage from "./pages/PricingSharingProfitPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function HomePage() {
   return (
@@ -65,6 +66,7 @@ function App() {
         <Route path="/availability" element={<EventAvailability />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogDetailPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );

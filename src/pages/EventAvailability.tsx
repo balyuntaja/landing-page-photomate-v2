@@ -27,12 +27,19 @@ const CAPACITY = 2;
 const ITEMS_PER_PAGE = 3;
 
 const DUMMY_EVENT_DATES: EventDate[] = [
-  { date: "2026-02-20", used: 2, capacity: CAPACITY, title: "Wedding A" },
-  { date: "2026-02-21", used: 1, capacity: CAPACITY, title: "Event Photobooth" },
-  { date: "2026-02-25", used: 2, capacity: CAPACITY, title: "Wedding B" },
-  { date: "2026-02-28", used: 1, capacity: CAPACITY, title: "Corporate Event" },
-  { date: "2026-03-05", used: 2, capacity: CAPACITY, title: "Wedding C" },
-  { date: "2026-03-10", used: 1, capacity: CAPACITY, title: "Brand Activation" },
+  { date: "2026-02-20", used: 1, capacity: CAPACITY, title: "Wedding" },
+  { date: "2026-05-31", used: 1, capacity: CAPACITY, title: "Wedding" },
+  { date: "2026-03-05", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
+  { date: "2026-03-06", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
+  { date: "2026-03-07", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
+  { date: "2026-03-08", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
+  { date: "2026-03-09", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
+  { date: "2026-03-10", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
+  { date: "2026-03-11", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
+  { date: "2026-03-12", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
+  { date: "2026-03-13", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
+  { date: "2026-03-14", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
+  { date: "2026-03-15", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
 ];
 
 const WA_NUMBER = "6287787405280";
