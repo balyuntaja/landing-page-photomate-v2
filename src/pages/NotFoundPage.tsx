@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { Navbar } from "../components";
 
 const WA_NUMBER = "6287787405280";
 const WA_URL = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Hai Photomate 👋 saya butuh bantuan.")}`;
