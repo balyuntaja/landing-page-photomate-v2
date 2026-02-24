@@ -27,7 +27,7 @@ const CAPACITY = 2;
 const ITEMS_PER_PAGE = 3;
 
 const DUMMY_EVENT_DATES: EventDate[] = [
-  { date: "2026-02-20", used: 1, capacity: CAPACITY, title: "Wedding" },
+  { date: "2026-03-28", used: 1, capacity: CAPACITY, title: "Wedding" },
   { date: "2026-05-31", used: 1, capacity: CAPACITY, title: "Wedding" },
   { date: "2026-03-05", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
   { date: "2026-03-06", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
