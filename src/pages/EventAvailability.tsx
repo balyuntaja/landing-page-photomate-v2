@@ -26,21 +26,75 @@ export function getStatus(e: EventDate): AvailabilityStatus {
 const CAPACITY = 2;
 const ITEMS_PER_PAGE = 3;
 
-const DUMMY_EVENT_DATES: EventDate[] = [
-  { date: "2026-03-28", used: 1, capacity: CAPACITY, title: "Wedding" },
-  { date: "2026-05-31", used: 1, capacity: CAPACITY, title: "Wedding" },
-  { date: "2026-03-05", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
-  { date: "2026-03-06", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
-  { date: "2026-03-07", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
-  { date: "2026-03-08", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
-  { date: "2026-03-09", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
-  { date: "2026-03-10", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
-  { date: "2026-03-11", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
-  { date: "2026-03-12", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
-  { date: "2026-03-13", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
-  { date: "2026-03-14", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
-  { date: "2026-03-15", used: 1, capacity: CAPACITY, title: "Ruang Riang" },
+/** Event dengan rentang tanggal (satu baris untuk banyak hari) */
+type EventRange = {
+  title: string;
+  startDate: string;
+  endDate: string;
+  used: number;
+  capacity: number;
+};
+
+/** Event dengan daftar tanggal bebas (mis. wedding di beberapa hari terpisah) */
+type EventDates = {
+  title: string;
+  dates: string[];
+  used: number;
+  capacity: number;
+};
+
+type EventDefinition = EventRange | EventDates;
+
+function isRange(e: EventDefinition): e is EventRange {
+  return "startDate" in e && "endDate" in e;
+}
+
+/** Generate array tanggal YYYY-MM-DD antara start dan end (inclusive) */
+function dateRange(start: string, end: string): string[] {
+  const out: string[] = [];
+  const d = new Date(start + "T12:00:00");
+  const endD = new Date(end + "T12:00:00");
+  while (d <= endD) {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, "0");
+    const day = String(d.getDate()).padStart(2, "0");
+    out.push(`${y}-${m}-${day}`);
+    d.setDate(d.getDate() + 1);
+  }
+  return out;
+}
+
+function expandToEventDates(def: EventDefinition): EventDate[] {
+  const dates = isRange(def)
+    ? dateRange(def.startDate, def.endDate)
+    : def.dates;
+  return dates.map((date) => ({
+    date,
+    used: def.used,
+    capacity: def.capacity,
+    title: def.title,
+  }));
+}
+
+/** Definisi event dalam bentuk ringkas (satu event = satu rentang atau beberapa tanggal) */
+const EVENT_DEFINITIONS: EventDefinition[] = [
+  {
+    title: "Ruang Riang Festival",
+    startDate: "2026-03-05",
+    endDate: "2026-03-15",
+    used: 1,
+    capacity: CAPACITY,
+  },
+  {
+    title: "Wedding",
+    dates: ["2026-03-28", "2026-05-31"],
+    used: 1,
+    capacity: CAPACITY,
+  },
 ];
+
+const DUMMY_EVENT_DATES: EventDate[] =
+  EVENT_DEFINITIONS.flatMap(expandToEventDates);
 
 const WA_NUMBER = "6287787405280";
 
@@ -95,6 +149,67 @@ function getStatusDotClass(status: AvailabilityStatus): string {
   if (status === "fullyBooked") return "bg-purple-600";
   if (status === "limited") return "bg-sky-400";
   return "bg-emerald-500";
+}
+
+/** Satu baris di sidebar: satu event (range atau satu tanggal) */
+export interface EventDisplayItem {
+  id: string;
+  title: string;
+  dateLabel: string;
+  used: number;
+  capacity: number;
+  status: AvailabilityStatus;
+}
+
+function buildEventDisplayList(
+  definitions: EventDefinition[],
+  dateMap: Map<string, EventDate>
+): EventDisplayItem[] {
+  const list: EventDisplayItem[] = [];
+  for (const def of definitions) {
+    if (isRange(def)) {
+      const dates = dateRange(def.startDate, def.endDate);
+      const statuses = dates.map((d) =>
+        getStatus(
+          dateMap.get(d) ?? {
+            date: d,
+            used: 0,
+            capacity: def.capacity,
+          }
+        )
+      );
+      const worst: AvailabilityStatus = statuses.some((s) => s === "fullyBooked")
+        ? "fullyBooked"
+        : statuses.some((s) => s === "limited")
+        ? "limited"
+        : "available";
+      const first = formatEventDate(dates[0]);
+      const last = formatEventDate(dates[dates.length - 1]);
+      const dateLabel =
+        dates.length > 1 ? `${first} – ${last}` : first;
+      list.push({
+        id: `${def.title}-${def.startDate}`,
+        title: def.title,
+        dateLabel,
+        used: def.used,
+        capacity: def.capacity,
+        status: worst,
+      });
+    } else {
+      for (const date of def.dates) {
+        const e = dateMap.get(date)!;
+        list.push({
+          id: `${def.title}-${date}`,
+          title: def.title,
+          dateLabel: formatEventDate(date),
+          used: e.used,
+          capacity: e.capacity,
+          status: getStatus(e),
+        });
+      }
+    }
+  }
+  return list;
 }
 
 /* ================= COMPONENT ================= */
@@ -156,14 +271,19 @@ export default function EventAvailability() {
     year: "numeric",
   });
 
-  /* ---------- pagination ---------- */
+  /* ---------- sidebar: satu baris per event (range atau satu tanggal) ---------- */
+
+  const eventDisplayList = useMemo(
+    () => buildEventDisplayList(EVENT_DEFINITIONS, dateMap),
+    [dateMap]
+  );
 
   const paginatedEvents = useMemo(() => {
     const start = (page - 1) * ITEMS_PER_PAGE;
-    return DUMMY_EVENT_DATES.slice(start, start + ITEMS_PER_PAGE);
-  }, [page]);
+    return eventDisplayList.slice(start, start + ITEMS_PER_PAGE);
+  }, [page, eventDisplayList]);
 
-  const totalPages = Math.ceil(DUMMY_EVENT_DATES.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(eventDisplayList.length / ITEMS_PER_PAGE);
 
   /* ---------- WA link ---------- */
 
@@ -252,33 +372,29 @@ export default function EventAvailability() {
 
                 {/* Event list */}
                 <div className="flex flex-col gap-4">
-                  {paginatedEvents.map((event) => {
-                    const status = getStatus(event);
-
-                    return (
-                      <div
-                        key={event.date}
-                        className="p-5 rounded-xl bg-white shadow-sm border border-gray-100 hover:shadow-md transition"
-                      >
-                        <div className="flex items-center gap-2 mb-2">
-                          <span
-                            className={`w-2.5 h-2.5 rounded-full ${getStatusDotClass(status)}`}
-                          />
-                          <p className="text-sm font-medium text-gray-900">
-                            {formatEventDate(event.date)}
-                          </p>
-                        </div>
-
-                        <h6 className="text-lg font-semibold text-gray-900">
-                          {event.title ?? getStatusLabel(status)}
-                        </h6>
-
-                        <p className="text-sm text-gray-600">
-                          {event.used}/{event.capacity} device terpakai
+                  {paginatedEvents.map((item) => (
+                    <div
+                      key={item.id}
+                      className="p-5 rounded-xl bg-white shadow-sm border border-gray-100 hover:shadow-md transition"
+                    >
+                      <div className="flex items-center gap-2 mb-2">
+                        <span
+                          className={`w-2.5 h-2.5 rounded-full ${getStatusDotClass(item.status)}`}
+                        />
+                        <p className="text-sm font-medium text-gray-900">
+                          {item.dateLabel}
                         </p>
                       </div>
-                    );
-                  })}
+
+                      <h6 className="text-lg font-semibold text-gray-900">
+                        {item.title}
+                      </h6>
+
+                      <p className="text-sm text-gray-600">
+                        {item.used}/{item.capacity} device terpakai
+                      </p>
+                    </div>
+                  ))}
                 </div>
 
                 {/* Pagination */}
