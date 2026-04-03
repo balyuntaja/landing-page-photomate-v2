@@ -26,6 +26,7 @@ import PricingSewaPage from "./pages/PricingSewaPage";
 import PricingSelfRunPage from "./pages/PricingSelfRunPage";
 import PricingSharingProfitPage from "./pages/PricingSharingProfitPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import PhotomateBio from "./components/PhotomateBio";
 
 function HomePage() {
   return (
@@ -66,6 +67,7 @@ function App() {
         <Route path="/availability" element={<EventAvailability />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/blog/:id" element={<BlogDetailPage />} />
+        <Route path="/bio" element={<PhotomateBio />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
