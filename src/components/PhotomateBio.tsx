@@ -1,20 +1,20 @@
 import { FaInstagram, FaWhatsapp, FaTiktok, FaGlobe } from "react-icons/fa";
-import backgroundPattern from "../assets/background_pattern.png";
+import backgroundPattern from "../assets/img/background_pattern.png";
 
 const photostrips = [
   {
     title: "Photomate x Iftar Nala",
-    image: "/src/assets/album_photostrip/Iftar_nala.webp",
+    image: "/src/assets/img/album_photostrip/Iftar_nala.webp",
     link: "https://fotoshare.co/e/Ds5d7QWXZH1Rq1nAIAK6g",
   },
   {
     title: "Photomate x Ruang Riang",
-    image: "/src/assets/album_photostrip/Ruangriang.webp",
+    image: "/src/assets/img/album_photostrip/Ruangriang.webp",
     link: "https://dreamboothstudio.com/id/gallery/events/69a86d59ede3ebdccd074598",
   },
   {
     title: "Photomate x HME FTP UB",
-    image: "/src/assets/album_photostrip/HME_FTP_UB.webp",
+    image: "/src/assets/img/album_photostrip/HME_FTP_UB.webp",
     link: "https://fotoshare.co/e/m542SWPh0dO2taBj7A87L",
   },
 ];
