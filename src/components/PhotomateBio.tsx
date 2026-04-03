@@ -1,20 +1,24 @@
 import { FaInstagram, FaWhatsapp, FaTiktok, FaGlobe } from "react-icons/fa";
 import backgroundPattern from "../assets/img/background_pattern.png";
+import logoImg from "../assets/img/logo.png";
+import iftarNalaImg from "../assets/img/album_photostrip/Iftar_nala.webp";
+import ruangRiangImg from "../assets/img/album_photostrip/Ruangriang.webp";
+import hmeFtpUbImg from "../assets/img/album_photostrip/HME_FTP_UB.webp";
 
 const photostrips = [
   {
     title: "Photomate x Iftar Nala",
-    image: "/src/assets/img/album_photostrip/Iftar_nala.webp",
+    image: iftarNalaImg,
     link: "https://fotoshare.co/e/Ds5d7QWXZH1Rq1nAIAK6g",
   },
   {
     title: "Photomate x Ruang Riang",
-    image: "/src/assets/img/album_photostrip/Ruangriang.webp",
+    image: ruangRiangImg,
     link: "https://dreamboothstudio.com/id/gallery/events/69a86d59ede3ebdccd074598",
   },
   {
     title: "Photomate x HME FTP UB",
-    image: "/src/assets/img/album_photostrip/HME_FTP_UB.webp",
+    image: hmeFtpUbImg,
     link: "https://fotoshare.co/e/m542SWPh0dO2taBj7A87L",
   },
 ];
@@ -33,10 +37,7 @@ export default function PhotomateBio() {
       <div className="mx-auto max-w-3xl">
         {/* Header */}
         <div className="flex items-center gap-4">
-          <img
-            src="/src/assets/img/logo.png"
-            className="w-20 h-20 rounded-full"
-          />
+          <img src={logoImg} className="w-20 h-20 rounded-full" alt="photomate.id logo" />
           <div className="space-y-1">
             <h1 className="text-2xl font-semibold">photomate.id</h1>
             <p className="text-sm max-w-md">
