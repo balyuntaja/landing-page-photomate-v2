@@ -1,6 +1,6 @@
 import { FaInstagram, FaWhatsapp, FaTiktok, FaGlobe } from "react-icons/fa";
-import backgroundPattern from "../assets/img/background_pattern.png";
-import logoImg from "../assets/img/logo.png";
+import backgroundPink from "../assets/img/pink.png";
+import logoImg from "../assets/img/logophotomateblue.png";
 import iftarNalaImg from "../assets/img/album_photostrip/Iftar_nala.webp";
 import ruangRiangImg from "../assets/img/album_photostrip/Ruangriang.webp";
 import hmeFtpUbImg from "../assets/img/album_photostrip/HME_FTP_UB.webp";
@@ -26,9 +26,9 @@ const photostrips = [
 export default function PhotomateBio() {
   return (
     <div
-      className="min-h-screen text-white px-4 py-10"
+      className="min-h-screen text-primary px-4 py-10"
       style={{
-        backgroundImage: `url(${backgroundPattern})`,
+        backgroundImage: `url(${backgroundPink})`,
         backgroundRepeat: "repeat",
         backgroundPosition: "center",
         backgroundSize: "auto",
@@ -39,10 +39,9 @@ export default function PhotomateBio() {
         <div className="flex items-center gap-4">
           <img src={logoImg} className="w-20 h-20 rounded-full" alt="photomate.id logo" />
           <div className="space-y-1">
-            <h1 className="text-2xl font-semibold">photomate.id</h1>
-            <p className="text-sm max-w-md">
-              Capture memories with your mate! 📸 <br />
-              💛 Let’s create moments together!
+            <h1 className="text-3xl font-extrabold tracking-wide">photomate.id</h1>
+            <p className="text-base font-medium leading-relaxed text-primary max-w-md">
+            Capture memories with your mate! 📸 <br /> Curious? Explore more on our website.
             </p>
 
             {/* Social Icons */}
@@ -89,7 +88,7 @@ export default function PhotomateBio() {
 
         {/* Photostrip Section */}
         <div className="mt-10">
-          <h2 className="text-center mb-4 font-medium">Link Photostrip</h2>
+          <h2 className="text-center mb-4 text-lg font-semibold">Link Photostrip</h2>
 
           <div className="-mx-4 px-4">
             <div className="flex gap-4 overflow-x-auto no-scrollbar">
@@ -111,7 +110,7 @@ export default function PhotomateBio() {
                   </div>
 
                   {/* Title BELOW */}
-                  <div className="mt-2 text-sm font-medium text-center text-white">
+                  <div className="mt-2 text-base font-semibold text-center text-primary">
                     {item.title}
                   </div>
                 </a>
@@ -122,50 +121,50 @@ export default function PhotomateBio() {
 
         {/* Contact Section */}
         <div className="mt-10">
-          <h2 className="text-center mb-4 font-medium">Contact Us at</h2>
+          <h2 className="text-center mb-4 text-lg font-semibold">Contact Us at</h2>
 
           <div className="flex flex-col gap-3">
             <a
               href="https://wa.me/6287787405280"
-              className="grid grid-cols-[28px_1fr_28px] items-center gap-3 bg-[#E6D3B3] text-black px-4 py-4 rounded-xl hover:opacity-95 transition"
+              className="grid grid-cols-[28px_1fr_28px] items-center gap-3 bg-primary text-white px-4 py-4 rounded-xl hover:bg-primary-dark transition"
               target="_blank"
               rel="noopener noreferrer"
             >
               <FaWhatsapp className="text-xl justify-self-center" />
-              <span className="font-medium text-center">WhatsApp</span>
+              <span className="text-base font-semibold text-center">WhatsApp</span>
               <span aria-hidden />
             </a>
 
             <a
               href="https://www.instagram.com/photomateid_/"
-              className="grid grid-cols-[28px_1fr_28px] items-center gap-3 bg-[#E6D3B3] text-black px-4 py-4 rounded-xl hover:opacity-95 transition"
+              className="grid grid-cols-[28px_1fr_28px] items-center gap-3 bg-primary text-white px-4 py-4 rounded-xl hover:bg-primary-dark transition"
               target="_blank"
               rel="noopener noreferrer"
             >
               <FaInstagram className="text-xl justify-self-center" />
-              <span className="font-medium text-center">Instagram</span>
+              <span className="text-base font-semibold text-center">Instagram</span>
               <span aria-hidden />
             </a>
 
             <a
               href="https://www.tiktok.com/@photomate_id"
-              className="grid grid-cols-[28px_1fr_28px] items-center gap-3 bg-[#E6D3B3] text-black px-4 py-4 rounded-xl hover:opacity-95 transition"
+              className="grid grid-cols-[28px_1fr_28px] items-center gap-3 bg-primary text-white px-4 py-4 rounded-xl hover:bg-primary-dark transition"
               target="_blank"
               rel="noopener noreferrer"
             >
               <FaTiktok className="text-xl justify-self-center" />
-              <span className="font-medium text-center">TikTok</span>
+              <span className="text-base font-semibold text-center">TikTok</span>
               <span aria-hidden />
             </a>
 
             <a
               href="https://photomate.id"
-              className="grid grid-cols-[28px_1fr_28px] items-center gap-3 bg-[#E6D3B3] text-black px-4 py-4 rounded-xl hover:opacity-95 transition"
+              className="grid grid-cols-[28px_1fr_28px] items-center gap-3 bg-primary text-white px-4 py-4 rounded-xl hover:bg-primary-dark transition"
               target="_blank"
               rel="noopener noreferrer"
             >
               <FaGlobe className="text-xl justify-self-center" />
-              <span className="font-medium text-center">Website</span>
+              <span className="text-base font-semibold text-center">Website</span>
               <span aria-hidden />
             </a>
           </div>
