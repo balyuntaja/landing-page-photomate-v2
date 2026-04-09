@@ -13,7 +13,6 @@ import {
   BlogSection,
   Faq,
   ClientFeedback,
-  TiktokEmbed,
   WhySection,
   WhatsAppFAB,
   FindUsSection,
@@ -42,7 +41,6 @@ function HomePage() {
       <ClientFeedback />
       <Subscribe />
       <Gallery />
-      {/* <TiktokEmbed /> */}
       <BlogSection />
       <Faq />
       <Footer />
