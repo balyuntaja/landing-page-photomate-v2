@@ -2,18 +2,27 @@ import { useEffect } from "react";
 
 const TIKTOK_EMBED_SCRIPT = "https://www.tiktok.com/embed.js";
 const TIKTOK_PROFILE_URL = "https://www.tiktok.com/@photomate_id";
+const TIKTOK_SCRIPT_ID = "tiktok-embed-script";
 
 export default function TiktokEmbed() {
   useEffect(() => {
-    const existing = document.querySelector<HTMLScriptElement>(
+    const existingById = document.getElementById(
+      TIKTOK_SCRIPT_ID
+    ) as HTMLScriptElement | null;
+    if (existingById) {
+      return;
+    }
+
+    const existingBySrc = document.querySelector<HTMLScriptElement>(
       `script[src="${TIKTOK_EMBED_SCRIPT}"]`
     );
-
-    if (existing) {
-      existing.remove();
+    if (existingBySrc) {
+      existingBySrc.id = TIKTOK_SCRIPT_ID;
+      return;
     }
 
     const script = document.createElement("script");
+    script.id = TIKTOK_SCRIPT_ID;
     script.src = TIKTOK_EMBED_SCRIPT;
     script.async = true;
     document.body.appendChild(script);

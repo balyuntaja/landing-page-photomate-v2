@@ -42,7 +42,7 @@ function HomePage() {
       <ClientFeedback />
       <Subscribe />
       <Gallery />
-      <TiktokEmbed />
+      {/* <TiktokEmbed /> */}
       <BlogSection />
       <Faq />
       <Footer />
