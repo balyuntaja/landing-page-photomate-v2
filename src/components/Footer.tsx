@@ -7,9 +7,9 @@ const Footer: React.FC = () => {
           
           {/* LEFT — CONTACT */}
           <div className="space-y-5">
-            <h4 className="text-white text-lg font-semibold">
+            <h2 className="text-white text-lg font-semibold">
               Photomate.id
-            </h4>
+            </h2>
 
             <div className="space-y-3 text-sm">
               <p>

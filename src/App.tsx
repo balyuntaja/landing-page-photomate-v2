@@ -1,31 +1,39 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import {
   Navbar,
   Hero,
-  CallToAction,
-  Services,
-  Pricing,
-  Subscribe,
-  Client,
   Footer,
   BackToTop,
-  Gallery,
-  BlogSection,
-  Faq,
-  ClientFeedback,
-  WhySection,
   WhatsAppFAB,
   FindUsSection,
   ScrollToTop,
 } from "./components";
-import BlogPage from "./pages/BlogPage";
-import BlogDetailPage from "./pages/BlogDetailPage";
-import EventAvailability from "./pages/EventAvailability";
-import PricingSewaPage from "./pages/PricingSewaPage";
-import PricingSelfRunPage from "./pages/PricingSelfRunPage";
-import PricingSharingProfitPage from "./pages/PricingSharingProfitPage";
-import NotFoundPage from "./pages/NotFoundPage";
-import PhotomateBio from "./components/PhotomateBio";
+
+const Client = lazy(() => import("./components/Client"));
+const Pricing = lazy(() => import("./components/Pricing"));
+const CallToAction = lazy(() => import("./components/CallToAction"));
+const Services = lazy(() => import("./components/Services"));
+const WhySection = lazy(() => import("./components/WhySection"));
+const ClientFeedback = lazy(() => import("./components/ClientFeedback"));
+const Subscribe = lazy(() => import("./components/Subscribe"));
+const Gallery = lazy(() => import("./components/Gallery"));
+const BlogSection = lazy(() => import("./components/BlogSection"));
+const Faq = lazy(() => import("./components/Faq"));
+const BlogPage = lazy(() => import("./pages/BlogPage"));
+const BlogDetailPage = lazy(() => import("./pages/BlogDetailPage"));
+const EventAvailability = lazy(() => import("./pages/EventAvailability"));
+const PricingSewaPage = lazy(() => import("./pages/PricingSewaPage"));
+const PricingSelfRunPage = lazy(() => import("./pages/PricingSelfRunPage"));
+const PricingSharingProfitPage = lazy(
+  () => import("./pages/PricingSharingProfitPage")
+);
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
+const PhotomateBio = lazy(() => import("./components/PhotomateBio"));
+
+function SectionSkeleton() {
+  return <div className="h-24" aria-hidden />;
+}
 
 function HomePage() {
   return (
@@ -34,16 +42,18 @@ function HomePage() {
       <main id="main-content">
         <Hero />
         <FindUsSection />
-        <Client />
-        <Pricing />
-        <CallToAction />
-        <Services />
-        <WhySection />
-        <ClientFeedback />
-        <Subscribe />
-        <Gallery />
-        <BlogSection />
-        <Faq />
+        <Suspense fallback={<SectionSkeleton />}>
+          <Client />
+          <Pricing />
+          <CallToAction />
+          <Services />
+          <WhySection />
+          <ClientFeedback />
+          <Subscribe />
+          <Gallery />
+          <BlogSection />
+          <Faq />
+        </Suspense>
       </main>
       <Footer />
       <WhatsAppFAB />
@@ -56,20 +66,22 @@ function App() {
   return (
     <div className="min-h-screen">
       <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/pricing/sewa" element={<PricingSewaPage />} />
-        <Route path="/pricing/self-run" element={<PricingSelfRunPage />} />
-        <Route
-          path="/pricing/sharing-profit"
-          element={<PricingSharingProfitPage />}
-        />
-        <Route path="/availability" element={<EventAvailability />} />
-        <Route path="/blog" element={<BlogPage />} />
-        <Route path="/blog/:id" element={<BlogDetailPage />} />
-        <Route path="/bio" element={<PhotomateBio />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+      <Suspense fallback={<SectionSkeleton />}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/pricing/sewa" element={<PricingSewaPage />} />
+          <Route path="/pricing/self-run" element={<PricingSelfRunPage />} />
+          <Route
+            path="/pricing/sharing-profit"
+            element={<PricingSharingProfitPage />}
+          />
+          <Route path="/availability" element={<EventAvailability />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:id" element={<BlogDetailPage />} />
+          <Route path="/bio" element={<PhotomateBio />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Suspense>
     </div>
   );
 }
