@@ -14,7 +14,7 @@ const categories: Category[] = ['All', 'Wedding', 'Event', 'Brand'];
 
 // Muat gambar dari src/assets/img/event (termasuk wedding*, event*, brand1, brand2, dll)
 const eventModules = import.meta.glob<{ default: string }>(
-  '../assets/img/event/*.{jpg,jpeg,JPG,png}',
+  '../assets/img/event/*.{jpg,jpeg,JPG,png,webp,Webp}',
   { eager: true }
 );
 
@@ -113,6 +113,7 @@ const Gallery: React.FC = () => {
                 className="min-w-[180px] w-[280px] sm:min-w-[300px] sm:w-[300px] shrink-0 snap-center"
               >
                 <img
+                  loading="lazy"
                   src={item.image}
                   alt={item.alt}
                   className="w-full h-auto object-contain rounded-xl transition-transform duration-300 hover:scale-105 aspect-2/3 bg-gray-100"
