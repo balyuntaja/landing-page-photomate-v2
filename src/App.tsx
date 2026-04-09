@@ -31,18 +31,20 @@ function HomePage() {
   return (
     <>
       <Navbar />
-      <Hero />
-      <FindUsSection />
-      <Client />
-      <Pricing />
-      <CallToAction />
-      <Services />
-      <WhySection />
-      <ClientFeedback />
-      <Subscribe />
-      <Gallery />
-      <BlogSection />
-      <Faq />
+      <main id="main-content">
+        <Hero />
+        <FindUsSection />
+        <Client />
+        <Pricing />
+        <CallToAction />
+        <Services />
+        <WhySection />
+        <ClientFeedback />
+        <Subscribe />
+        <Gallery />
+        <BlogSection />
+        <Faq />
+      </main>
       <Footer />
       <WhatsAppFAB />
       <BackToTop />

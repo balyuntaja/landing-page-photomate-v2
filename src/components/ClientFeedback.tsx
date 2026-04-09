@@ -64,7 +64,8 @@ const ClientFeedback: React.FC = () => {
               className="flex flex-col min-w-[300px] md:min-w-[320px] lg:min-w-[340px] w-[300px] md:w-[320px] lg:w-[340px] bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 border border-gray-100 snap-start shrink-0"
             >
               {/* Rating */}
-              <div className="flex gap-0.5 mb-4" aria-label={`${item.rating} bintang`}>
+              <div className="flex gap-0.5 mb-4">
+                <span className="sr-only">{item.rating} bintang</span>
                 {Array.from({ length: item.rating }).map((_, i) => (
                   <svg
                     key={i}

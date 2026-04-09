@@ -86,9 +86,9 @@ const FindUsSection: React.FC = () => {
       <div className="relative container mx-auto px-4 md:px-6">
         <div className="flex flex-col items-center gap-10 text-center">
           {/* Title */}
-          <h3 className="text-white text-2xl md:text-4xl font-extrabold tracking-tight">
+          <h2 className="text-white text-2xl md:text-4xl font-extrabold tracking-tight">
             Find Us On
-          </h3>
+          </h2>
 
           {/* Social icons */}
           <div className="flex items-center justify-center gap-4 md:gap-8 flex-wrap">
