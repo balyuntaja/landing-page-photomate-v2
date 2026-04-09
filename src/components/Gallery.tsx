@@ -1,7 +1,8 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from "react";
+import OptimizedImage from "./OptimizedImage";
 
-type Category = 'All' | 'Wedding' | 'Event' | 'Brand';
-type ItemCategory = 'Wedding' | 'Event' | 'Brand';
+type Category = "All" | "Wedding" | "Event" | "Brand";
+type ItemCategory = "Wedding" | "Event" | "Brand";
 
 interface GalleryItem {
   id: number;
@@ -10,12 +11,11 @@ interface GalleryItem {
   alt: string;
 }
 
-const categories: Category[] = ['All', 'Wedding', 'Event', 'Brand'];
+const categories: Category[] = ["All", "Wedding", "Event", "Brand"];
 
 // Muat gambar dari src/assets/img/event (termasuk wedding*, event*, brand1, brand2, dll)
 const eventModules = import.meta.glob<{ default: string }>(
-  '../assets/img/event/*.{jpg,jpeg,JPG,png,webp,Webp}',
-  { eager: true }
+  "../assets/img/event/*.{webp,Webp}"
 );
 
 const mapModulesToItems = (
@@ -23,48 +23,87 @@ const mapModulesToItems = (
 ): GalleryItem[] =>
   Object.entries(modules).map(([path, mod], index) => {
     const url = mod.default;
-    const filename = path.split('/').pop()?.toLowerCase() ?? '';
-    const category: ItemCategory = filename.includes('brand')
-      ? 'Brand'
-      : filename.includes('wedding')
-        ? 'Wedding'
-        : 'Event';
+    const filename = path.split("/").pop()?.toLowerCase() ?? "";
+    const category: ItemCategory = filename.includes("brand")
+      ? "Brand"
+      : filename.includes("wedding")
+        ? "Wedding"
+        : "Event";
     const alt =
-      category === 'Brand'
+      category === "Brand"
         ? `Gallery brand Photomate ${index + 1}`
-        : category === 'Wedding'
+        : category === "Wedding"
           ? `Gallery wedding Photomate ${index + 1}`
           : `Gallery event Photomate ${index + 1}`;
     return { id: 0, category, image: url, alt };
   });
 
-const galleryItems: GalleryItem[] = mapModulesToItems(eventModules).map(
-  (item, index) => ({ ...item, id: index + 1 })
-);
-
 const Gallery: React.FC = () => {
-  const [activeCategory, setActiveCategory] = useState<Category>('All');
+  const [activeCategory, setActiveCategory] = useState<Category>("All");
+  const [galleryItems, setGalleryItems] = useState<GalleryItem[]>([]);
+  const [isGalleryActive, setIsGalleryActive] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(6);
+  const sectionRef = useRef<HTMLElement>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    const target = sectionRef.current;
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setIsGalleryActive(true);
+        observer.disconnect();
+      },
+      { rootMargin: "300px" }
+    );
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!isGalleryActive) return;
+
+    const loadGallery = async () => {
+      const modulesEntries = await Promise.all(
+        Object.entries(eventModules).map(async ([path, importer]) => {
+          const mod = await importer();
+          return [path, mod] as const;
+        })
+      );
+      const items = mapModulesToItems(
+        Object.fromEntries(modulesEntries) as Record<string, { default: string }>
+      ).map((item, index) => ({ ...item, id: index + 1 }));
+      setGalleryItems(items);
+    };
+
+    void loadGallery();
+  }, [isGalleryActive]);
+
   const filteredItems =
-    activeCategory === 'All'
+    activeCategory === "All"
       ? galleryItems
       : galleryItems.filter((item) => item.category === activeCategory);
 
-  const visibleItems = filteredItems;
+  const visibleItems = filteredItems.slice(0, visibleCount);
 
-  const scroll = (direction: 'left' | 'right') => {
+  const scroll = (direction: "left" | "right") => {
     if (!sliderRef.current) return;
 
     const scrollAmount = sliderRef.current.offsetWidth;
     sliderRef.current.scrollBy({
-      left: direction === 'left' ? -scrollAmount : scrollAmount,
-      behavior: 'smooth',
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
     });
   };
 
   return (
-    <section id="gallery" className="py-20 bg-white scroll-mt-24">
+    <section
+      ref={sectionRef}
+      id="gallery"
+      className="py-20 bg-white scroll-mt-24"
+    >
       <div className="container mx-auto px-4">
         {/* Title */}
         <h2 className="text-3xl md:text-4xl font-bold text-primary text-center mb-10">
@@ -93,7 +132,7 @@ const Gallery: React.FC = () => {
         {/* Carousel */}
         <div className="relative">
           <button
-            onClick={() => scroll('left')}
+            onClick={() => scroll("left")}
             className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/50 shadow-lg rounded-full py-5 px-2 mx-2 hover:bg-gray-100"
           >
             ‹
@@ -112,10 +151,11 @@ const Gallery: React.FC = () => {
                 key={item.id}
                 className="min-w-[180px] w-[280px] sm:min-w-[300px] sm:w-[300px] shrink-0 snap-center"
               >
-                <img
-                  loading="lazy"
+                <OptimizedImage
                   src={item.image}
                   alt={item.alt}
+                  width={900}
+                  height={1350}
                   className="w-full h-auto object-contain rounded-xl transition-transform duration-300 hover:scale-105 aspect-2/3 bg-gray-100"
                 />
               </div>
@@ -123,12 +163,22 @@ const Gallery: React.FC = () => {
           </div>
 
           <button
-            onClick={() => scroll('right')}
+            onClick={() => scroll("right")}
             className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/50 shadow-lg rounded-full py-5 px-2 mx-2 hover:bg-gray-100"
           >
             ›
           </button>
         </div>
+        {filteredItems.length > visibleCount && (
+          <div className="mt-8 flex justify-center">
+            <button
+              onClick={() => setVisibleCount((prev) => prev + 6)}
+              className="px-6 py-3 rounded-full border border-primary text-primary font-semibold hover:bg-primary hover:text-white transition"
+            >
+              Muat lebih banyak
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );

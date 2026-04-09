@@ -23,6 +23,7 @@ import PrestonFestival from "../assets/img/client/Preston Festival.webp";
 import Rabraw from "../assets/img/client/Rabraw.webp";
 import SCE2026 from "../assets/img/client/SCE 2026.webp";
 import TeenRocket from "../assets/img/client/Teen Rocket.webp";
+import OptimizedImage from "./OptimizedImage";
 
 const logos = [
   { src: Dirganala, alt: "Dirganala" },
@@ -76,9 +77,11 @@ const Client: React.FC = () => {
                 key={`logo-1-${index}`}
                 className="flex items-center justify-center min-w-[120px]"
               >
-                <img
+                <OptimizedImage
                   src={logo.src}
                   alt={logo.alt}
+                  width={240}
+                  height={96}
                   className="h-16 w-auto object-contain opacity-70 hover:opacity-100 transition"
                 />
               </div>
@@ -90,9 +93,11 @@ const Client: React.FC = () => {
                 key={`logo-2-${index}`}
                 className="flex items-center justify-center min-w-[120px]"
               >
-                <img
+                <OptimizedImage
                   src={logo.src}
                   alt={logo.alt}
+                  width={180}
+                  height={72}
                   className="h-12 w-auto object-contain opacity-70 hover:opacity-100 transition"
                 />
               </div>

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Footer, Navbar } from "../components";
+import OptimizedImage from "../components/OptimizedImage";
 import { blogArticles } from "../data/blogArticles";
 
 const BlogPage: React.FC = () => {
@@ -62,10 +63,12 @@ const BlogPage: React.FC = () => {
                 className="group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
               >
                 <div className="relative aspect-video overflow-hidden bg-gray-100">
-                  <img
+                  <OptimizedImage
                     src={article.image}
                     alt=""
                     aria-hidden
+                    width={800}
+                    height={450}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                 </div>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import logoBlue from "../assets/img/logophotomateblue.png";
+import OptimizedImage from "./OptimizedImage";
 
 const PRICING_SUBLINKS = [
   { label: "Pricelist Sewa", to: "/pricing/sewa" },
@@ -68,7 +69,13 @@ const Navbar: React.FC = () => {
               onClick={closeMenu}
               className="flex items-center gap-2"
             >
-              <img src={logoBlue} alt="Photomate" className="h-8 md:h-9 w-auto" />
+              <OptimizedImage
+                src={logoBlue}
+                alt="Photomate"
+                width={220}
+                height={72}
+                className="h-8 md:h-9 w-auto"
+              />
               <span
                 className={`
                   text-xl md:text-2xl font-extrabold tracking-tight transition-all duration-500 text-primary

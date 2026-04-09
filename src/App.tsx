@@ -13,7 +13,7 @@ import {
   BlogSection,
   Faq,
   ClientFeedback,
-  InstagramEmbed,
+  TiktokEmbed,
   WhySection,
   WhatsAppFAB,
   FindUsSection,
@@ -42,7 +42,7 @@ function HomePage() {
       <ClientFeedback />
       <Subscribe />
       <Gallery />
-      <InstagramEmbed />
+      <TiktokEmbed />
       <BlogSection />
       <Faq />
       <Footer />

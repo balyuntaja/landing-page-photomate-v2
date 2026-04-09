@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { blogArticles } from "../data/blogArticles";
+import OptimizedImage from "./OptimizedImage";
 
 const blogPreviewItems = blogArticles.slice(0, 3);
 
@@ -27,10 +28,12 @@ const BlogSection: React.FC = () => {
               className="group bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             >
               <div className="relative aspect-video overflow-hidden bg-gray-100">
-                <img
+                <OptimizedImage
                   src={item.image}
                   alt=""
                   aria-hidden
+                  width={800}
+                  height={450}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>

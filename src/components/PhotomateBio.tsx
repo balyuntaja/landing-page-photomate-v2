@@ -4,6 +4,7 @@ import logoImg from "../assets/img/logophotomateblue.png";
 import iftarNalaImg from "../assets/img/album_photostrip/Iftar_nala.webp";
 import ruangRiangImg from "../assets/img/album_photostrip/Ruangriang.webp";
 import hmeFtpUbImg from "../assets/img/album_photostrip/HME_FTP_UB.webp";
+import OptimizedImage from "./OptimizedImage";
 
 const photostrips = [
   {
@@ -37,7 +38,13 @@ export default function PhotomateBio() {
       <div className="mx-auto max-w-3xl">
         {/* Header */}
         <div className="flex items-center gap-4">
-          <img src={logoImg} className="w-20 h-20 rounded-full" alt="photomate.id logo" />
+          <OptimizedImage
+            src={logoImg}
+            className="w-20 h-20 rounded-full"
+            alt="photomate.id logo"
+            width={80}
+            height={80}
+          />
           <div className="space-y-1">
             <h1 className="text-3xl font-extrabold tracking-wide">photomate.id</h1>
             <p className="text-base font-medium leading-relaxed text-primary max-w-md">
@@ -102,10 +109,12 @@ export default function PhotomateBio() {
                 >
                   {/* Image (200x200 FIXED) */}
                   <div className="w-[200px] h-[200px] rounded-2xl overflow-hidden bg-[#E6D3B3]">
-                    <img
+                    <OptimizedImage
                       src={item.image}
                       className="w-full h-full object-cover"
                       alt={item.title}
+                      width={200}
+                      height={200}
                     />
                   </div>
 

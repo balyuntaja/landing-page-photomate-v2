@@ -1,4 +1,5 @@
 import whyImage from "../assets/img/achievement.webp";
+import OptimizedImage from "./OptimizedImage";
 
 const ARTICLE_URL =
   "https://timesindonesia.co.id/tekno/550852/photomateid-usaha-photobooth-express-karya-gen-z-yang-fleksibel-dan-kreatif";
@@ -9,9 +10,11 @@ const WhySection: React.FC = () => {
       <div className="flex flex-col lg:flex-row">
         {/* Image Side */}
         <div className="lg:w-1/2">
-          <img
+          <OptimizedImage
             src={whyImage}
             alt="Photomate di Times Indonesia"
+            width={1200}
+            height={1200}
             className="w-full h-full object-cover min-h-[400px]"
           />
         </div>

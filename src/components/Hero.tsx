@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import heroCollage from "../assets/img/hero_photomate.webp";
+import OptimizedImage from "./OptimizedImage";
 
 const DURATION_MS = 1800;
 const EVENT_TARGET = 70;
@@ -36,6 +37,19 @@ function formatSesi(n: number) {
 const Hero: React.FC = () => {
   const countEvent = useCountUp(EVENT_TARGET, true);
   const countSesi = useCountUp(SESI_TARGET, true);
+
+  useEffect(() => {
+    const existing = document.querySelector<HTMLLinkElement>(
+      `link[rel="preload"][href="${heroCollage}"]`
+    );
+    if (existing) return;
+
+    const preload = document.createElement("link");
+    preload.rel = "preload";
+    preload.as = "image";
+    preload.href = heroCollage;
+    document.head.appendChild(preload);
+  }, []);
 
   return (
     <section
@@ -95,16 +109,14 @@ const Hero: React.FC = () => {
             {/* marquee container */}
             <div className="relative h-full w-full overflow-hidden rounded-[28px] bg-white">
               <div className="hero-marquee-inner flex flex-col w-full">
-                <img
+                <OptimizedImage
                   src={heroCollage}
                   alt="Photomate photobooth gallery"
+                  width={1080}
+                  height={1620}
                   className="w-full h-auto shrink-0 block"
-                />
-                <img
-                  src={heroCollage}
-                  alt=""
-                  aria-hidden
-                  className="w-full h-auto shrink-0 block"
+                  critical
+                  withSkeleton
                 />
               </div>
             </div>

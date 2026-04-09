@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import { Footer, Navbar } from "../components";
+import OptimizedImage from "../components/OptimizedImage";
 import { getArticleById, blogArticles } from "../data/blogArticles";
 
 function getReadingTime(body: string): number {
@@ -69,9 +70,11 @@ const BlogDetailPage: React.FC = () => {
           </header>
 
           <div className="rounded-2xl overflow-hidden shadow-lg mb-8 bg-gray-100">
-            <img
+            <OptimizedImage
               src={article.image}
               alt={article.title}
+              width={1200}
+              height={675}
               className="w-full aspect-video object-cover"
             />
           </div>
@@ -97,7 +100,14 @@ const BlogDetailPage: React.FC = () => {
                     className="group flex gap-4 p-4 rounded-xl hover:bg-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
                   >
                     <div className="w-24 h-16 shrink-0 rounded-lg overflow-hidden bg-gray-100">
-                      <img src={a.image} alt="" className="w-full h-full object-cover" aria-hidden />
+                      <OptimizedImage
+                        src={a.image}
+                        alt=""
+                        width={240}
+                        height={160}
+                        className="w-full h-full object-cover"
+                        aria-hidden
+                      />
                     </div>
                     <div className="min-w-0 flex-1">
                       <p className="text-xs text-gray-500 mb-0.5">{a.date}</p>

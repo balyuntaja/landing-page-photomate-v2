@@ -1,4 +1,5 @@
 import aboutImage from "../assets/img/logophotomateblue.png";
+import OptimizedImage from "./OptimizedImage";
 
 const checkItems = [
   "Photobooth kekinian berbasis strip photo estetik",
@@ -23,9 +24,11 @@ const About: React.FC = () => {
           {/* Image */}
           <div className="w-full lg:w-5/12">
             <div className="relative">
-              <img
+              <OptimizedImage
                 src={aboutImage}
                 alt="Photomate Photobooth"
+                width={640}
+                height={640}
                 className="rounded-lg w-100"
               />
               <div className="absolute -bottom-4 -right-4 w-full h-full border-4 border-primary rounded-lg -z-10" />
