@@ -52,7 +52,7 @@ const About: React.FC = () => {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 mt-6">
                 {checkItems.map((item, index) => (
                   <div key={index} className="flex items-center gap-3">
-                    <span className="flex-shrink-0 w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center">
+                    <span className="shrink-0 w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center">
                       <svg
                         className="w-4 h-4 text-primary"
                         fill="none"
