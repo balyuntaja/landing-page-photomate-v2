@@ -1,27 +1,39 @@
 import { FaInstagram, FaWhatsapp, FaTiktok, FaGlobe } from "react-icons/fa";
 import backgroundPink from "../assets/img/pink.png";
 import logoImg from "../assets/img/logophotomateblue.png";
-import iftarNalaImg from "../assets/img/album_photostrip/Iftar_nala.webp";
-import ruangRiangImg from "../assets/img/album_photostrip/Ruangriang.webp";
-import hmeFtpUbImg from "../assets/img/album_photostrip/HME_FTP_UB.webp";
+// import iftarNalaImg from "../assets/img/album_photostrip/Iftar_nala.webp";
+// import ruangRiangImg from "../assets/img/album_photostrip/Ruangriang.webp";
+// import hmeFtpUbImg from "../assets/img/album_photostrip/HME_FTP_UB.webp";
 import OptimizedImage from "./OptimizedImage";
+import ftspCupImg from "../assets/img/album_photostrip/ftsp_cup.png";
+import masLanMbakSmanekaImg from "../assets/img/album_photostrip/mas_lan_mbak.png";
 
 const photostrips = [
   {
-    title: "Photomate x Iftar Nala",
-    image: iftarNalaImg,
-    link: "https://fotoshare.co/e/Ds5d7QWXZH1Rq1nAIAK6g",
+    title: "Photomate x FTSP Cup",
+    image: ftspCupImg,
+    link: "https://fotoshare.co/e/enXdC83DHSxdMlI7jWsgb",
   },
   {
-    title: "Photomate x Ruang Riang",
-    image: ruangRiangImg,
-    link: "https://dreamboothstudio.com/id/gallery/events/69a86d59ede3ebdccd074598",
+    title: "Photomate x Mas Lan Mbak SMANEKA",
+    image: masLanMbakSmanekaImg,
+    link: "https://fotoshare.co/e/Bbq95XD85zwy6hrqPaxb6",
   },
-  {
-    title: "Photomate x HME FTP UB",
-    image: hmeFtpUbImg,
-    link: "https://fotoshare.co/e/m542SWPh0dO2taBj7A87L",
-  },
+  // {
+  //   title: "Photomate x Iftar Nala",
+  //   image: iftarNalaImg,
+  //   link: "https://fotoshare.co/e/Ds5d7QWXZH1Rq1nAIAK6g",
+  // },
+  // {
+  //   title: "Photomate x Ruang Riang",
+  //   image: ruangRiangImg,
+  //   link: "https://dreamboothstudio.com/id/gallery/events/69a86d59ede3ebdccd074598",
+  // },
+  // {
+  //   title: "Photomate x HME FTP UB",
+  //   image: hmeFtpUbImg,
+  //   link: "https://fotoshare.co/e/m542SWPh0dO2taBj7A87L",
+  // },
 ];
 
 export default function PhotomateBio() {
