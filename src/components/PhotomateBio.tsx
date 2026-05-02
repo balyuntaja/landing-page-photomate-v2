@@ -4,11 +4,23 @@ import logoImg from "../assets/img/logophotomateblue.png";
 // import iftarNalaImg from "../assets/img/album_photostrip/Iftar_nala.webp";
 // import ruangRiangImg from "../assets/img/album_photostrip/Ruangriang.webp";
 // import hmeFtpUbImg from "../assets/img/album_photostrip/HME_FTP_UB.webp";
+import putraPutriPertanianImg from "../assets/img/album_photostrip/bio_ppp.png";
+import halalBihalalImg from "../assets/img/album_photostrip/halbi_3c.png";
 import OptimizedImage from "./OptimizedImage";
 import ftspCupImg from "../assets/img/album_photostrip/ftsp_cup.png";
 import masLanMbakSmanekaImg from "../assets/img/album_photostrip/mas_lan_mbak.png";
 
 const photostrips = [
+  {
+    title: "Photomate x Putra Putri Pertanian 2026",
+    image: putraPutriPertanianImg,
+    link: "https://dreamboothstudio.com/id/gallery/events/69f4ac08e8db801d20b76f35",
+  },
+  {
+    title: "Photomate x Halal Bihalal 3C",
+    image: halalBihalalImg,
+    link: "https://fotoshare.co/e/rw4_yOFbcg-aCrFaZjAj1",
+  },
   {
     title: "Photomate x FTSP Cup",
     image: ftspCupImg,
