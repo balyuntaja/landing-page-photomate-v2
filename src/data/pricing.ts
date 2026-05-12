@@ -76,13 +76,13 @@ export const sharingOneDevice = [
   {
     schema: "A",
     sessions: "51 – 100",
-    split: "Photomate 15% · Panitia 85%",
+    split: "Photomate 85% · Panitia 15%",
     price: "Rp25.000",
   },
   {
     schema: "B",
     sessions: "100 – tak hingga",
-    split: "Photomate 20% · Panitia 80%",
+    split: "Photomate 80% · Panitia 20%",
     price: "Rp25.000",
   },
 ];
