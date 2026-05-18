@@ -7,6 +7,7 @@ import {
   BackToTop,
   WhatsAppFAB,
   FindUsSection,
+  OfflineBoothsSection,
   ScrollToTop,
 } from "./components";
 
@@ -42,6 +43,7 @@ function HomePage() {
       <main id="main-content">
         <Hero />
         <FindUsSection />
+        <OfflineBoothsSection />
         <Suspense fallback={<SectionSkeleton />}>
           <Client />
           <Pricing />

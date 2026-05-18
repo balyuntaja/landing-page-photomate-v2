@@ -9,8 +9,14 @@ import halalBihalalImg from "../assets/img/album_photostrip/halbi_3c.png";
 import OptimizedImage from "./OptimizedImage";
 import ftspCupImg from "../assets/img/album_photostrip/ftsp_cup.png";
 import masLanMbakSmanekaImg from "../assets/img/album_photostrip/mas_lan_mbak.png";
+import munas_ftp_ubImg from "../assets/img/album_photostrip/COVER_MUNAS.png";
 
 const photostrips = [
+  {
+    title: "Photomate x Munas FTP UB 2026",
+    image: munas_ftp_ubImg,
+    link: "https://fotoshare.co/e/WDquEtye5yVkmrNZGWRne",
+  },
   {
     title: "Photomate x Putra Putri Pertanian 2026",
     image: putraPutriPertanianImg,

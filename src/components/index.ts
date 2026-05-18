@@ -16,5 +16,6 @@ export { default as ClientFeedback } from "./ClientFeedback";
 export { default as TiktokEmbed } from "./TiktokEmbed";
 export { default as WhatsAppFAB } from "./WhatsAppFAB";
 export { default as FindUsSection } from "./FindUsSection";
+export { default as OfflineBoothsSection } from "./OfflineBoothsSection";
 export { default as ScrollToTop } from "./ScrollToTop";
 export { default as OptimizedImage } from "./OptimizedImage";
