@@ -10,8 +10,14 @@ import OptimizedImage from "./OptimizedImage";
 import ftspCupImg from "../assets/img/album_photostrip/ftsp_cup.png";
 import masLanMbakSmanekaImg from "../assets/img/album_photostrip/mas_lan_mbak.png";
 import munas_ftp_ubImg from "../assets/img/album_photostrip/COVER_MUNAS.png";
+import bioSmarihastaImg from "../assets/img/album_photostrip/bio_smarihasta.png";
 
 const photostrips = [
+  {
+    title: "Photomate x Class Meeting SMARIHASTA 2026",
+    image: bioSmarihastaImg,
+    link: "https://fotoshare.co/e/C8kDBOvoVz4CsukwOyNtR",
+  },
   {
     title: "Photomate x Munas FTP UB 2026",
     image: munas_ftp_ubImg,
