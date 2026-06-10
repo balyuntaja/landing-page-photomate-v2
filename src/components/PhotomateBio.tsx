@@ -1,9 +1,6 @@
 import { FaInstagram, FaWhatsapp, FaTiktok, FaGlobe } from "react-icons/fa";
 import backgroundPink from "../assets/img/pink.png";
 import logoImg from "../assets/img/logophotomateblue.png";
-// import iftarNalaImg from "../assets/img/album_photostrip/Iftar_nala.webp";
-// import ruangRiangImg from "../assets/img/album_photostrip/Ruangriang.webp";
-// import hmeFtpUbImg from "../assets/img/album_photostrip/HME_FTP_UB.webp";
 import putraPutriPertanianImg from "../assets/img/album_photostrip/bio_ppp.png";
 import halalBihalalImg from "../assets/img/album_photostrip/halbi_3c.png";
 import OptimizedImage from "./OptimizedImage";
@@ -11,8 +8,14 @@ import ftspCupImg from "../assets/img/album_photostrip/ftsp_cup.png";
 import masLanMbakSmanekaImg from "../assets/img/album_photostrip/mas_lan_mbak.png";
 import munas_ftp_ubImg from "../assets/img/album_photostrip/COVER_MUNAS.png";
 import bioSmarihastaImg from "../assets/img/album_photostrip/bio_smarihasta.png";
+import bioSpaceSmanawaImg from "../assets/img/album_photostrip/cover_space.png";
 
 const photostrips = [
+  {
+    title: "Photomate x SPACE SMANAWA 2026",
+    image: bioSpaceSmanawaImg,
+    link: "https://fotoshare.co/e/K2OsVm0YZy_9ZFdAREm2w",
+  },
   {
     title: "Photomate x Class Meeting SMARIHASTA 2026",
     image: bioSmarihastaImg,
@@ -43,21 +46,6 @@ const photostrips = [
     image: masLanMbakSmanekaImg,
     link: "https://fotoshare.co/e/Bbq95XD85zwy6hrqPaxb6",
   },
-  // {
-  //   title: "Photomate x Iftar Nala",
-  //   image: iftarNalaImg,
-  //   link: "https://fotoshare.co/e/Ds5d7QWXZH1Rq1nAIAK6g",
-  // },
-  // {
-  //   title: "Photomate x Ruang Riang",
-  //   image: ruangRiangImg,
-  //   link: "https://dreamboothstudio.com/id/gallery/events/69a86d59ede3ebdccd074598",
-  // },
-  // {
-  //   title: "Photomate x HME FTP UB",
-  //   image: hmeFtpUbImg,
-  //   link: "https://fotoshare.co/e/m542SWPh0dO2taBj7A87L",
-  // },
 ];
 
 export default function PhotomateBio() {
