@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import OptimizedImage from "./OptimizedImage";
 
-type Category = "All" | "Wedding" | "Event" | "Brand";
-type ItemCategory = "Wedding" | "Event" | "Brand";
+type Category = "All" | "Wedding" | "Event" | "Brand" | "High School Collaboration";
+type ItemCategory = "Wedding" | "Event" | "Brand" | "High School Collaboration";
 
 interface GalleryItem {
   id: number;
@@ -11,11 +11,11 @@ interface GalleryItem {
   alt: string;
 }
 
-const categories: Category[] = ["All", "Wedding", "Event", "Brand"];
+const categories: Category[] = ["All", "Wedding", "Event", "Brand", "High School Collaboration"];
 
 // Muat gambar dari src/assets/img/event (termasuk wedding*, event*, brand1, brand2, dll)
 const eventModules = import.meta.glob<{ default: string }>(
-  "../assets/img/event/*.{webp,Webp}"
+  "../assets/img/event/*.{webp,Webp,jpg,jpeg,png}"
 );
 
 const mapModulesToItems = (
@@ -26,12 +26,16 @@ const mapModulesToItems = (
     const filename = path.split("/").pop()?.toLowerCase() ?? "";
     const category: ItemCategory = filename.includes("brand")
       ? "Brand"
+      : filename.includes("highschool")
+        ? "High School Collaboration"
       : filename.includes("wedding")
         ? "Wedding"
         : "Event";
     const alt =
       category === "Brand"
         ? `Gallery brand Photomate ${index + 1}`
+        : category === "High School Collaboration"
+          ? `Gallery high school collaboration Photomate ${index + 1}`
         : category === "Wedding"
           ? `Gallery wedding Photomate ${index + 1}`
           : `Gallery event Photomate ${index + 1}`;
